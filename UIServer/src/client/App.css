@@ -45,3 +45,43 @@
   border-radius: 4px;
   margin-top: 20px;
 }
+#title {
+  
+  font-size: xx-large;
+  color: white;
+  border-style: solid;
+  border-color: red;
+  
+}
+#logout-button{
+  float: right;
+}
+#bottom{
+  border-style: solid;
+  border-color: blue;
+  min-height: 90vh;
+}
+#left{
+  border-style: solid;
+  border-color: yellow;
+  width: 48%;
+  height: 100%;
+  min-height: 88vh;
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#right{
+  border-style: solid;
+  border-color: green;
+  width: 48%;
+  height: 100%;
+  min-height: 88vh;
+  float: right;
+}
+#chart{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

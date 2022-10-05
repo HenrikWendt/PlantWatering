@@ -2,8 +2,14 @@ import React, {useState,useContext} from 'react'
 import '../App.css';
 import axios from 'axios';
 import Banner from '../components/Banner';
+import {hashFunction} from '../helperFunctions/HashFunctions.js'
+
 //Contexts
 import { LoggedInContext } from '../contexts/LoggedInContext';
+import { TokenContext } from '../contexts/TokenContext';
+import { UrlContext } from '../contexts/UrlContext';
+
+
 
 export default function Search() {
 
@@ -14,32 +20,29 @@ export default function Search() {
     const [createAccountStatus, setCreateAccountStatus] = useState("");
    
     const {LoggedIn, setLoggedIn} = useContext(LoggedInContext);
-   
-    var host = window.location.hostname; 
-
-
-
-    
+    const {Token, setToken} = useContext(TokenContext);
+    const {url, setUrl} = useContext(UrlContext);
+    //const salt = bcrypt.genSaltSync(10)
 
     function submitLogin() {
-       
-
-        axios.get("http://"+ host +":9000/login", {
+        
+        axios.get(url+"/login", {
             params: {
                 username: username,
-                password: password,
+                password: hashFunction(password),
             }
         }).then(res => {
         
             if(res.status === 200) {
                 setCreateAccountStatus(res.data.message);  
-                setLoggedIn(true);
-             
+                setLoggedIn({status: true, username: username });
+                setToken(res.data.token);
+                window.sessionStorage.setItem("user", JSON.stringify({"username": username, "token": res.data.token}));
             }
         })
         .catch(function(error) {
             setCreateAccountStatus(error.response.data.message);   
-            setLoggedIn(false);      
+            setLoggedIn({status: false, username: "" });     
         });
     }   
 
@@ -49,11 +52,11 @@ export default function Search() {
             setCreateAccount("visible");
         }else {
           
-            axios.post("http://"+ host +":9000/createAccount", {
+            axios.post(url+"/createAccount", {
             params: {
                 username: username,
-                password: password,
-                code: code
+                password: hashFunction(password),
+                code: hashFunction(code)
             }
             })
             .then(res => {

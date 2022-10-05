@@ -14,8 +14,12 @@ var cors = require("cors");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+
 var login = require('./routes/login');
 var createAccount = require('./routes/createAccount');
+var logout = require('./routes/logout');
+var fetchData = require('./routes/fetchData');
+var waterPlants = require('./routes/waterPlants');
 
 const config = require("./config");
 const dbUrl = config.dbUrl;
@@ -50,9 +54,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+
 app.use('/users', usersRouter);
+
 app.use('/login', login);
 app.use('/createAccount', createAccount);
+app.use('/logout', logout);
+app.use('/fetchData', fetchData);
+app.use('/waterPlants', waterPlants);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

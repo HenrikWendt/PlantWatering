@@ -2,6 +2,7 @@ var express = require('express');
 var request = require('request');
 var User = require("../models/User");
 var router = express.Router();
+var bcrypt = require('bcryptjs');
 
 /* GET home page. */
 router.post('/', async (req, res) => {
@@ -17,11 +18,13 @@ router.post('/', async (req, res) => {
 
      sentCode = parameters.params.code;
 
-      if ( sentCode === code) {
+      if ( bcrypt.compareSync(code, sentCode)) {
         
         let user = new User();
         user.username = parameters.params.username;
         user.password = parameters.params.password;
+        user.token =  "null";
+       
         user = await user.save();
         res.status(200).json({
           status: 200,
@@ -50,8 +53,6 @@ router.post('/', async (req, res) => {
       }
       
     }
-
-
 });
 
 module.exports = router;
