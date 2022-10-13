@@ -62,16 +62,17 @@ export default function Dashboard() {
   return (
     <div> 
        <div id = "title">Welcome {LoggedIn.username} 
-        <button id = "logout-button" onClick={() => logout()}> Logout </button>
+        <button type="button" class="btn btn-dark" id="logout-button" onClick={() => logout()} >Logout</button>
        </div>
        <div id = "bottom">
           <div id= "left">
             <Chart/>
           </div>
           <div id= "right">
-            <Status/>
-            <button id = "button" onClick={() => waterPlants()}> Water plant </button>
+            <Status />
+            <button type="button" class="btn btn-dark btn-lg " onClick={() => waterPlants()} >Water plant</button>
             <p id = "title"> {wateringText} </p>
+            
           </div>
        </div>
     </div>

@@ -5,6 +5,8 @@ import Dashboard from './Dashboard.js';
 import axios from 'axios';
 import {hashFunction} from '../helperFunctions/HashFunctions.js'
 
+import 'bootstrap/dist/css/bootstrap.css';
+
 //Contexts
 import { LoggedInContext } from '../contexts/LoggedInContext.js';
 import { TokenContext } from '../contexts/TokenContext.js';
@@ -73,12 +75,12 @@ export default function Main() {
    
   
   return (
-    <div>
+    <div className="font-link" >
       <UrlContext.Provider value = {{url, setUrl}}>
       <TokenContext.Provider value = {{Token, setToken}}> 
       <LoggedInContext.Provider value = {{LoggedIn, setLoggedIn}}>
        
-        <div>
+        <div id="organize">
           {LoginVisable}
         </div>
         <div>

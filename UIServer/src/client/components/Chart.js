@@ -46,8 +46,8 @@ export default function Chart() {
 
 //  <CartesianGrid stroke="#FFFFFF" />
   return (
-    <div id ="chart">
-        Charts
+    <div >
+       <h2 id ="chart">Chart</h2> 
         <LineChart
             width={500}
             height={400}
@@ -55,7 +55,7 @@ export default function Chart() {
             margin={{ top: 5, right: 5, left: 0, bottom: 5 }}
             >
             <XAxis dataKey="date" stroke="#FFFFFF" />
-            <YAxis stroke="#FFFFFF"/>
+            <YAxis dataKey="number" stroke="#FFFFFF"/>
             <Tooltip />
             <Line type="monotone" dataKey="number" stroke="#FFFFFF" />
         </LineChart>

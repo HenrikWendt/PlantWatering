@@ -10,26 +10,36 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+.font-link {
+  font-family: 'Manrope', cursive;
+}
 #Search {
   width: 100%;
-  height: 100%;
   color: white;
 }
+#organize {
+  border-style: solid;
+  border-color: red;
 
+}
 #banner {
   width: 60%
 }
 
 #row{
   height: 100%;
-  margin-bottom: 5px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
 }
 
 #inpiutField-username {
+
   width: 20%;
   height: 25px;
   color: black;
   border-radius: 4px;
+
 }
 
 #inpiutField-platform {
@@ -46,7 +56,6 @@
   margin-top: 20px;
 }
 #title {
-  
   font-size: xx-large;
   color: white;
   border-style: solid;
@@ -70,7 +79,6 @@
   float: left;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 #right{
   border-style: solid;
@@ -81,7 +89,17 @@
   float: right;
 }
 #chart{
+  border-style: solid;
+  border-color: yellow;
+  color: white;
+}
+#span-size{
   display: flex;
+  width: 38%;
   justify-content: center;
+  
+}
+#search-container{
+  display: flex;
   align-items: center;
 }

@@ -84,37 +84,41 @@ export default function Search() {
 
   return (
     
-    <div  id="Search">
+    <div id="search-container">
+        <div  id="Search">
+            <Banner/>
+            <div id="row">
+                <div class="input-group input-group-lg" id ="inpiutField-username">
+                    <span class="input-group-text bg-dark text-white border-secondary" id="span-size" >Username</span>
+                    <input name="username" type="text" class="form-control bg-dark text-white border-secondary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" onChange={handleChange}/>
+                </div>
+            </div>
+            <div id="row">
+                <div class="input-group input-group-lg" id ="inpiutField-username">
+                    <span class="input-group-text bg-dark text-white border-secondary" id="span-size">Password</span>
+                    <input name="password" type="password" class="form-control bg-dark text-white border-secondary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" onChange={handleChange}/>
+                </div>
+            </div>
+            <div id="row" style={{visibility: createAccount}} >
+                <div class="input-group input-group-lg" id ="inpiutField-username">
+                    <span class="input-group-text bg-dark text-white border-secondary" id="span-size">Code</span>
+                    <input name="code" type="password" class="form-control bg-dark text-white border-secondary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" onChange={handleChange}/>
+                </div>
+            </div>
 
-        <Banner/>
-        
-        <div id="row">
-            <label>Enter username: </label>
-        </div>
-        <div id="row">
-            <input type="text" id= "inpiutField-username"  name="username" onChange={handleChange}/> 
-        </div>
-         <div id="row">
-            <label>Enter password: </label>
-        </div>
-        <div id="row">
-            <input type="password" id="inpiutField-username" name="password"  onChange={handleChange}/>
-        </div>
-        <div id="row" style={{visibility: createAccount}} >
-            <label >Enter Secret Code: </label>
-        </div>
-        <div id="row" style={{visibility: createAccount}} >
-            <input  type="password" id="inpiutField-username" name="code"  onChange={handleChange}/>
-        </div>
-
-        <div id="row">
-             <button name="loginButton" id="button" onClick={() => submitLogin()}> Login</button>
-        </div>
-        <div id="row">
-            <button name="createAccountButton" id="button" onClick={() => createAccountButton()}> Create Account</button>
-        </div>
-        <div id="row" >
-            <label > {createAccountStatus} </label>
+            <div id="row">
+                <div class="d-grid gap-2 col-2 mx-auto">
+                    <button type="button" class="btn btn-dark btn-lg " onClick={() => submitLogin()} >Login</button>
+                </div>
+            </div>
+            <div id="row">
+                <div class="d-grid gap-2 col-2 mx-auto">
+                    <button type="button" class="btn btn-dark btn-lg " onClick={() => createAccountButton()} >Create Account</button>
+                </div>
+            </div>
+            <div id="row" >
+                <label > {createAccountStatus} </label>
+            </div>
         </div>
     </div>
   )

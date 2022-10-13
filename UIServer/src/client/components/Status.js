@@ -38,7 +38,7 @@ export default function Status() {
     
 
   return (
-    <div id = "title">
+    <div id = "title" className="font-link">
       Status: {waterStatus}
     </div>
   )
