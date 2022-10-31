@@ -6,6 +6,7 @@ import Chart from '../components/Chart';
 import Status from '../components/Status';
 import axios from 'axios';
 import {hashFunction} from '../helperFunctions/HashFunctions.js'
+import {BrowserView, MobileView} from 'react-device-detect';
 
 export default function Dashboard() {
 
@@ -60,21 +61,43 @@ export default function Dashboard() {
   }
 
   return (
+    <>
+    <BrowserView>
     <div> 
        <div id = "title">Welcome {LoggedIn.username} 
         <button type="button" class="btn btn-dark" id="logout-button" onClick={() => logout()} >Logout</button>
        </div>
        <div id = "bottom">
           <div id= "left">
-            <Chart/>
+            <div id= "right-box">
+              <Chart/>
+            </div>
           </div>
           <div id= "right">
-            <Status />
-            <button type="button" class="btn btn-dark btn-lg " onClick={() => waterPlants()} >Water plant</button>
-            <p id = "title"> {wateringText} </p>
-            
+            <div id= "right-box">
+              <Status />
+              <button type="button" class="btn btn-dark btn-lg "  id = "water-button"onClick={() => waterPlants()} >Water plant</button>
+              <p id = "text"> {wateringText} </p>
+            </div>
           </div>
        </div>
     </div>
+    </BrowserView>
+    <MobileView>
+    <div> 
+       <div id = "title-mobile">Welcome {LoggedIn.username} 
+        <button type="button" class="btn btn-dark" id="logout-button" onClick={() => logout()} >Logout</button>
+       </div>
+       <div id ="dashbord-mobile">
+          <Chart/>  
+          <Status />
+          <button type="button" class="btn btn-dark btn-lg "  id = "water-button"onClick={() => waterPlants()} >Water plant</button>
+          <div id = "text">
+            <h2 > {wateringText} </h2>
+          </div>
+       </div>
+    </div>
+    </MobileView>
+    </>
   )
 }

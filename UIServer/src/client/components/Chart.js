@@ -12,8 +12,8 @@ import axios from 'axios';
 import { TokenContext } from '../contexts/TokenContext';
 import { LoggedInContext } from '../contexts/LoggedInContext';
 import { UrlContext } from '../contexts/UrlContext';
-
 import {hashFunction} from '../helperFunctions/HashFunctions.js'
+import {BrowserView, MobileView} from 'react-device-detect';
 
 export default function Chart() {
 
@@ -46,8 +46,10 @@ export default function Chart() {
 
 //  <CartesianGrid stroke="#FFFFFF" />
   return (
+    <>
+    <BrowserView>
     <div >
-       <h2 id ="chart">Chart</h2> 
+       <h2 id ="chart">Number of waterings</h2> 
         <LineChart
             width={500}
             height={400}
@@ -60,5 +62,23 @@ export default function Chart() {
             <Line type="monotone" dataKey="number" stroke="#FFFFFF" />
         </LineChart>
     </div>
+    </BrowserView>
+    <MobileView>
+    <div >
+       <h2 id ="chart">Number of waterings</h2> 
+        <LineChart
+            width={400}
+            height={270}
+           data={waterState}
+            margin={{ top: 5, right: 5, left: 0, bottom: 5 }}
+            >
+            <XAxis dataKey="date" stroke="#FFFFFF" />
+            <YAxis dataKey="number" stroke="#FFFFFF"/>
+            <Tooltip />
+            <Line type="monotone" dataKey="number" stroke="#FFFFFF" />
+        </LineChart>
+    </div>
+    </MobileView>
+    </>
   )
 }

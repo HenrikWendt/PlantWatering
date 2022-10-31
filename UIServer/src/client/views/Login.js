@@ -3,6 +3,7 @@ import '../App.css';
 import axios from 'axios';
 import Banner from '../components/Banner';
 import {hashFunction} from '../helperFunctions/HashFunctions.js'
+import {BrowserView, MobileView} from 'react-device-detect';
 
 //Contexts
 import { LoggedInContext } from '../contexts/LoggedInContext';
@@ -83,43 +84,85 @@ export default function Search() {
     }
 
   return (
-    
-    <div id="search-container">
-        <div  id="Search">
-            <Banner/>
-            <div id="row">
-                <div class="input-group input-group-lg" id ="inpiutField-username">
-                    <span class="input-group-text bg-dark text-white border-secondary" id="span-size" >Username</span>
-                    <input name="username" type="text" class="form-control bg-dark text-white border-secondary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" onChange={handleChange}/>
+    <>
+     <BrowserView>
+        <div id="search-container">
+            <div  id="Search">
+                <Banner/>
+                <div id="row">
+                    <div class="input-group input-group-lg" id ="inpiutField-username">
+                        <span class="input-group-text bg-dark text-white border-secondary" id="span-size" >Username</span>
+                        <input name="username" type="text" class="form-control bg-dark text-white border-secondary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" onChange={handleChange}/>
+                    </div>
                 </div>
-            </div>
-            <div id="row">
-                <div class="input-group input-group-lg" id ="inpiutField-username">
-                    <span class="input-group-text bg-dark text-white border-secondary" id="span-size">Password</span>
-                    <input name="password" type="password" class="form-control bg-dark text-white border-secondary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" onChange={handleChange}/>
+                <div id="row">
+                    <div class="input-group input-group-lg" id ="inpiutField-username">
+                        <span class="input-group-text bg-dark text-white border-secondary" id="span-size">Password</span>
+                        <input name="password" type="password" class="form-control bg-dark text-white border-secondary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" onChange={handleChange}/>
+                    </div>
                 </div>
-            </div>
-            <div id="row" style={{visibility: createAccount}} >
-                <div class="input-group input-group-lg" id ="inpiutField-username">
-                    <span class="input-group-text bg-dark text-white border-secondary" id="span-size">Code</span>
-                    <input name="code" type="password" class="form-control bg-dark text-white border-secondary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" onChange={handleChange}/>
+                <div id="row" style={{visibility: createAccount}} >
+                    <div class="input-group input-group-lg" id ="inpiutField-username">
+                        <span class="input-group-text bg-dark text-white border-secondary" id="span-size">Code</span>
+                        <input name="code" type="password" class="form-control bg-dark text-white border-secondary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" onChange={handleChange}/>
+                    </div>
                 </div>
-            </div>
 
-            <div id="row">
-                <div class="d-grid gap-2 col-2 mx-auto">
-                    <button type="button" class="btn btn-dark btn-lg " onClick={() => submitLogin()} >Login</button>
+                <div id="row">
+                    <div class="d-grid gap-2 col-2 mx-auto">
+                        <button type="button" class="btn btn-dark btn-lg " onClick={() => submitLogin()} >Login</button>
+                    </div>
                 </div>
-            </div>
-            <div id="row">
-                <div class="d-grid gap-2 col-2 mx-auto">
-                    <button type="button" class="btn btn-dark btn-lg " onClick={() => createAccountButton()} >Create Account</button>
+                <div id="row">
+                    <div class="d-grid gap-2 col-2 mx-auto">
+                        <button type="button" class="btn btn-dark btn-lg " onClick={() => createAccountButton()} >Create Account</button>
+                    </div>
                 </div>
-            </div>
-            <div id="row" >
-                <label > {createAccountStatus} </label>
+                <div id="row" >
+                    <label > {createAccountStatus} </label>
+                </div>
             </div>
         </div>
-    </div>
+        </BrowserView>
+        <MobileView>
+        <div id="search-container">
+            <div  id="Search">
+                <Banner/>
+                <div id="row">
+                    <div class="input-group input-group-lg" >
+                        <span class="input-group-text bg-dark text-white border-secondary" id="span-size" >Username</span>
+                        <input name="username" type="text" class="form-control bg-dark text-white border-secondary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" onChange={handleChange}/>
+                    </div>
+                </div>
+                <div id="row">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text bg-dark text-white border-secondary" id="span-size">Password</span>
+                        <input name="password" type="password" class="form-control bg-dark text-white border-secondary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" onChange={handleChange}/>
+                    </div>
+                </div>
+                <div id="row" style={{visibility: createAccount}} >
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text bg-dark text-white border-secondary" id="span-size">Code</span>
+                        <input name="code" type="password" class="form-control bg-dark text-white border-secondary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" onChange={handleChange}/>
+                    </div>
+                </div>
+
+                <div id="row">
+                    <div class="">
+                        <button type="button" class="btn btn-dark btn-lg " onClick={() => submitLogin()} >Login</button>
+                    </div>
+                </div>
+                <div id="row">
+                    <div class="">
+                        <button type="button" class="btn btn-dark btn-lg " onClick={() => createAccountButton()} >Create Account</button>
+                    </div>
+                </div>
+                <div id="row" >
+                    <label > {createAccountStatus} </label>
+                </div>
+            </div>
+        </div>
+        </MobileView>
+    </>
   )
 }
