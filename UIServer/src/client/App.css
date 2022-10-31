@@ -1,5 +1,4 @@
 .App {
-
   text-align: center;
   background-image: url("images/backgorund.png");
   background-color: black;
@@ -17,15 +16,15 @@
   width: 100%;
   color: white;
 }
-#organize {
-  border-style: solid;
-  border-color: red;
-
-}
 #banner {
-  width: 60%
+  width: 25%;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
-
+#image{
+  display: flex;
+  justify-content: center;
+}
 #row{
   height: 100%;
   margin-bottom: 30px;
@@ -34,12 +33,10 @@
 }
 
 #inpiutField-username {
-
   width: 20%;
   height: 25px;
   color: black;
   border-radius: 4px;
-
 }
 
 #inpiutField-platform {
@@ -56,50 +53,60 @@
   margin-top: 20px;
 }
 #title {
-  font-size: xx-large;
+  font-size: 50px;
   color: white;
-  border-style: solid;
-  border-color: red;
-  
+}
+#title-mobile {
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+}
+#text {
+  font-size: xx-large;
+  color: rgb(255, 255, 255);
+  padding-bottom: 30px;
+  padding-top: 30px;
 }
 #logout-button{
   float: right;
 }
 #bottom{
-  border-style: solid;
-  border-color: blue;
   min-height: 90vh;
 }
 #left{
-  border-style: solid;
-  border-color: yellow;
-  width: 48%;
+  width: 50%;
   height: 100%;
   min-height: 88vh;
   float: left;
   display: flex;
   justify-content: center;
+  align-items: center;
+  
 }
 #right{
-  border-style: solid;
-  border-color: green;
-  width: 48%;
+  width: 50%;
   height: 100%;
   min-height: 88vh;
   float: right;
+  display: flex;
+  align-items: center;
+}
+#right-box{
+  display:block;
 }
 #chart{
-  border-style: solid;
-  border-color: yellow;
   color: white;
 }
 #span-size{
   display: flex;
   width: 38%;
   justify-content: center;
-  
 }
 #search-container{
   display: flex;
   align-items: center;
+}
+#dashbord-mobile{
+ display: block;
+ 
 }
