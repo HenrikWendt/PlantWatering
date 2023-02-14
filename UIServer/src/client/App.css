@@ -10,7 +10,7 @@
   background-size: cover;
 }
 .font-link {
-  font-family: 'Manrope', cursive;
+  font-family: "Manrope", cursive;
 }
 #Search {
   width: 100%;
@@ -21,11 +21,11 @@
   padding-top: 10px;
   padding-bottom: 10px;
 }
-#image{
+#image {
   display: flex;
   justify-content: center;
 }
-#row{
+#row {
   height: 100%;
   margin-bottom: 30px;
   display: flex;
@@ -40,17 +40,23 @@
 }
 
 #inpiutField-platform {
-  width: 21%; 
+  width: 21%;
   height: 31px;
   line-height: 20px;
-  -webkit-appearance: menulist-button;  
-  -moz-appearance:none;
+  -webkit-appearance: menulist-button;
+  -moz-appearance: none;
 }
 #button {
-  width: 21%; 
+  width: 21%;
   height: 31px;
   border-radius: 4px;
-  margin-top: 20px;
+  margin: 20px;
+}
+#select {
+  width: 25%;
+  background-color: transparent;
+  color: white;
+  margin: 20px;
 }
 #title {
   font-size: 50px;
@@ -67,13 +73,13 @@
   padding-bottom: 30px;
   padding-top: 30px;
 }
-#logout-button{
+#logout-button {
   float: right;
 }
-#bottom{
+#bottom {
   min-height: 90vh;
 }
-#left{
+#left {
   width: 50%;
   height: 100%;
   min-height: 88vh;
@@ -81,9 +87,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
-#right{
+#right {
   width: 50%;
   height: 100%;
   min-height: 88vh;
@@ -91,22 +96,26 @@
   display: flex;
   align-items: center;
 }
-#right-box{
-  display:block;
+#right-box {
+  display: block;
 }
-#chart{
+#chart {
   color: white;
 }
-#span-size{
+#span-size {
   display: flex;
-  width: 38%;
+  width: 45%;
   justify-content: center;
+  padding-inline-start: 30px;
+  padding-inline-end: 30px;
 }
-#search-container{
+#search-container {
   display: flex;
   align-items: center;
 }
-#dashbord-mobile{
- display: block;
- 
+#dashbord-mobile {
+  display: block;
+}
+#login-mobile {
+  width: 80%;
 }
