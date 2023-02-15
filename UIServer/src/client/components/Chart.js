@@ -14,6 +14,7 @@ import { LoggedInContext } from "../contexts/LoggedInContext";
 import { UrlContext } from "../contexts/UrlContext";
 import { hashFunction } from "../helperFunctions/HashFunctions.js";
 import { BrowserView, MobileView } from "react-device-detect";
+import Selector from "./Selector";
 
 export default function Chart() {
   const [waterState, setWaterState] = useState(null);
@@ -44,8 +45,8 @@ export default function Chart() {
               "/" +
               element.date.split("T")[0].split("-")[2];
             let tempObject = {
-              date: date,
-              number: element.numberOfWaterings,
+              Date: date,
+              Waterings: element.numberOfWaterings,
             };
 
             tempListOfWaterings.push(tempObject);
@@ -57,89 +58,78 @@ export default function Chart() {
   }
 
   function setSelected() {
-    let temp = document.querySelector("#select").value;
+    let temp = document.querySelector("#selectShow").value;
     setNodeToShow(temp);
   }
 
-  //  <CartesianGrid stroke="#FFFFFF" />
+  //  <CartesianGrid stroke="#FFFFFF" />  <CartesianGrid strokeDasharray="3 3" />
   return (
     <>
       <BrowserView>
         <div>
-          <h2 id="chart">Number of waterings</h2>
-          <div id="row">
-            <select
-              className="form-select form-select-sm"
-              aria-label="Default select-sm example"
-              id="select"
-            >
-              <option defaultValue>All</option>
-              <option value="1">Node 1</option>
-              <option value="2">Node 2</option>
-              <option value="3">Node 3</option>
-              <option value="4">Node 4</option>
-              <option value="5">Node 5</option>
-            </select>
-
-            <button
-              type="button"
-              className="btn btn-dark btn-sm "
-              id="button"
-              onClick={() => setSelected()}
-            >
-              Show
-            </button>
-          </div>
-
+          <h2 id="chart">Number of waterings this week</h2>
+          <Selector
+            propsFunction={setSelected}
+            propsButtonName={"Show"}
+            propsIdName={"selectShow"}
+          />
           <LineChart
             width={500}
             height={400}
             data={waterState}
             margin={{ top: 5, right: 5, left: 0, bottom: 5 }}
           >
-            <XAxis dataKey="date" stroke="#FFFFFF" />
-            <YAxis dataKey="number" stroke="#FFFFFF" allowDecimals={false} />
-            <Tooltip />
-            <Line type="monotone" dataKey="number" stroke="#FFFFFF" />
+            <XAxis dataKey="Date" stroke="#FFFFFF" />
+            <YAxis dataKey="Waterings" stroke="#FFFFFF" allowDecimals={false} />
+            <Tooltip
+              isAnimationActive={false}
+              itemStyle={{ color: "white", backgroundColor: "transparent" }}
+              contentStyle={{
+                color: "transparent",
+                backgroundColor: "transparent",
+                borderRadius: 20,
+              }}
+              labelStyle={{
+                color: "white",
+                backgroundColor: "transparent",
+              }}
+              viewBox={{ color: "transparent" }}
+            />
+            <Line type="monotone" dataKey="Waterings" stroke="#FFFFFF" />
           </LineChart>
         </div>
       </BrowserView>
       <MobileView>
         <div>
           <h2 id="chart">Number of waterings</h2>
-          <div id="row">
-            <select
-              className="form-select form-select-sm"
-              aria-label="Default select-sm example"
-              id="select"
-            >
-              <option defaultValue>All</option>
-              <option value="1">Node 1</option>
-              <option value="2">Node 2</option>
-              <option value="3">Node 3</option>
-              <option value="4">Node 4</option>
-              <option value="5">Node 5</option>
-            </select>
-
-            <button
-              type="button"
-              className="btn btn-dark btn-sm "
-              id="button"
-              onClick={() => setSelected()}
-            >
-              Show
-            </button>
-          </div>
+          <Selector
+            propsFunction={setSelected}
+            propsButtonName={"Show"}
+            propsIdName={"selectShow"}
+          />
           <LineChart
             width={400}
             height={270}
             data={waterState}
             margin={{ top: 5, right: 5, left: 0, bottom: 5 }}
           >
-            <XAxis dataKey="date" stroke="#FFFFFF" />
-            <YAxis dataKey="number" stroke="#FFFFFF" allowDecimals={false} />
-            <Tooltip />
-            <Line type="monotone" dataKey="number" stroke="#FFFFFF" />
+            <XAxis dataKey="Date" stroke="#FFFFFF" />
+            <YAxis dataKey="Waterings" stroke="#FFFFFF" allowDecimals={false} />
+            <Tooltip
+              isAnimationActive={false}
+              cursor={false}
+              itemStyle={{ color: "white", backgroundColor: "transparent" }}
+              contentStyle={{
+                color: "transparent",
+                backgroundColor: "transparent",
+                borderRadius: 20,
+              }}
+              labelStyle={{
+                color: "white",
+                backgroundColor: "transparent",
+              }}
+            />
+            <Line type="monotone" dataKey="Waterings" stroke="#FFFFFF" />
           </LineChart>
         </div>
       </MobileView>

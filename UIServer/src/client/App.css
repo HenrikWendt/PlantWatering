@@ -52,7 +52,13 @@
   border-radius: 4px;
   margin: 20px;
 }
-#select {
+#selectShow {
+  width: 25%;
+  background-color: transparent;
+  color: white;
+  margin: 20px;
+}
+#selectWatering {
   width: 25%;
   background-color: transparent;
   color: white;

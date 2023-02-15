@@ -7,6 +7,7 @@ import Status from "../components/Status";
 import axios from "axios";
 import { hashFunction } from "../helperFunctions/HashFunctions.js";
 import { BrowserView, MobileView } from "react-device-detect";
+import Selector from "../components/Selector";
 
 export default function Dashboard() {
   const { LoggedIn, setLoggedIn } = useContext(LoggedInContext);
@@ -35,12 +36,13 @@ export default function Dashboard() {
 
   function waterPlants() {
     setWateringText("Loading...");
-
+    let temp = document.querySelector("#selectWatering").value;
     axios
       .get(url + "/waterPlants", {
         params: {
           username: LoggedIn.username,
           token: hashFunction(Token),
+          node: temp,
         },
       })
       .then((res) => {
@@ -78,14 +80,11 @@ export default function Dashboard() {
             <div id="right">
               <div id="right-box">
                 <Status />
-                <button
-                  type="button"
-                  className="btn btn-dark btn-lg "
-                  id="water-button"
-                  onClick={() => waterPlants()}
-                >
-                  Water plant
-                </button>
+                <Selector
+                  propsFunction={waterPlants}
+                  propsButtonName={"Water plant"}
+                  propsIdName={"selectWatering"}
+                />
                 <p id="text"> {wateringText} </p>
               </div>
             </div>
@@ -108,14 +107,11 @@ export default function Dashboard() {
           <div id="dashbord-mobile">
             <Chart />
             <Status />
-            <button
-              type="button"
-              className="btn btn-dark btn-lg "
-              id="water-button"
-              onClick={() => waterPlants()}
-            >
-              Water plant
-            </button>
+            <Selector
+              propsFunction={waterPlants}
+              propsButtonName={"Water plant"}
+              propsIdName={"selectWatering"}
+            />
             <div id="text">
               <h2> {wateringText} </h2>
             </div>
