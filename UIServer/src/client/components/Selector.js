@@ -8,12 +8,12 @@ export default function Selector(props) {
         aria-label="Default select-sm example"
         id={props.propsIdName}
       >
-        <option defaultValue>All</option>
-        <option value="1">Node 1</option>
-        <option value="2">Node 2</option>
-        <option value="3">Node 3</option>
-        <option value="4">Node 4</option>
-        <option value="5">Node 5</option>
+        <option id="selectOptions" defaultValue>All</option>
+        <option id="selectOptions" value="1">Node 1</option>
+        <option id="selectOptions" value="2">Node 2</option>
+        <option id="selectOptions" value="3">Node 3</option>
+        <option id="selectOptions" value="4">Node 4</option>
+        <option id="selectOptions" value="5">Node 5</option>
       </select>
 
       <button

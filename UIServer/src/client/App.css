@@ -58,6 +58,9 @@
   color: white;
   margin: 20px;
 }
+#selectOptions {
+  background-color: black;
+}
 #selectWatering {
   width: 25%;
   background-color: transparent;
