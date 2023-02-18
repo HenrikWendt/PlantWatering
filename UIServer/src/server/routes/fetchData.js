@@ -64,8 +64,8 @@ router.get("/chart", async (req, res) => {
         });
       }
     } else {
-      res.status(400).json({
-        status: 400,
+      res.status(401).json({
+        status: 401,
         message: "Not authorized!",
       });
     }
@@ -97,8 +97,8 @@ router.get("/status", async (req, res) => {
         });
       }
     } else {
-      res.status(400).json({
-        status: 400,
+      res.status(401).json({
+        status: 401,
         message: "Not authorized!",
       });
     }
@@ -130,14 +130,14 @@ router.post("/", async (req, res) => {
         message: "Data was recived!",
       });
     } else {
-      res.status(400).json({
-        status: 400,
+      res.status(401).json({
+        status: 401,
         message: "Wrong password!",
       });
     }
   } catch (err) {
-    res.status(400).json({
-      status: 400,
+    res.status(500).json({
+      status: 500,
       message: "Someting went wrong!",
     });
   }

@@ -9,6 +9,7 @@ router.get("/", async (req, res) => {
     var parameters = req.query;
 
     const nodes = ["1", "2", "3", "4", "5"];
+    const requestsReceived = [];
     const listOfErrors = [];
     const user = await User.findOne({ username: parameters.username }).exec();
     if (
@@ -20,32 +21,42 @@ router.get("/", async (req, res) => {
 
       if (parameters.node === "All") {
         let wateringError = false;
-
-        await Promise.all(
-          nodes.map(async (node) => {
-            await request(
-              await wateringRequest(node),
-              function (error, response) {
-                console.log("B4!");
-                if (response.statusCode !== 200) {
-                  console.log("ERROR!");
+        nodes.map(async (node) => {
+          request(
+           await wateringRequest(node),
+            function (error, response) {
+              if(response) { 
+                //Succesful
+                if (response.statusCode === 200) {
+                }else {
+                  //Error
                   listOfErrors.push(node);
                   wateringError = true;
                 }
               }
-            );
-          })
-        );
-        /* for (let i = 0; i < nodes.length; i++) {
-          request(await wateringRequest(nodes[i]), function (error, response) {
-            console.log("B4!");
-            if (response.statusCode !== 200) {
-              console.log("ERROR!");
-              listOfErrors.push(nodes[i]);
-              wateringError = true;
+              if(error) {
+                //Error
+                listOfErrors.push(node);
+                wateringError = true;
+              }
+              responseFunction(node);
             }
-          });
-        }*/
+          )
+        })
+        function responseFunction (node) {
+          requestsReceived.push(node);
+          if(requestsReceived.length === nodes.length) {
+          if (wateringError) {
+            res.status(500).json({
+              errorList: listOfErrors
+            });
+          } else {
+            res.status(200).json({
+              message: "Watering started on all nodes!",
+            });
+          }
+          }
+        }
       } else {
         request(
           await wateringRequest(parameters.node),
@@ -55,7 +66,7 @@ router.get("/", async (req, res) => {
                 message: "Watering started!",
               });
             } else {
-              res.status(400).json({
+              res.status(500).json({
                 message: "Something went wrong, no watering performed!",
               });
             }
@@ -63,8 +74,8 @@ router.get("/", async (req, res) => {
         );
       }
     } else {
-      res.status(400).json({
-        status: 400,
+      res.status(401).json({
+        status: 401,
         message: "Not authorized!",
       });
     }

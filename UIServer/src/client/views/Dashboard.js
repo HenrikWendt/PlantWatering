@@ -36,27 +36,29 @@ export default function Dashboard() {
 
   function waterPlants() {
     setWateringText("Loading...");
-    let temp = document.querySelector("#selectWatering").value;
+    let tempNode = document.querySelector("#selectWatering").value;
     axios
       .get(url + "/waterPlants", {
         params: {
           username: LoggedIn.username,
           token: hashFunction(Token),
-          node: temp,
+          node: tempNode,
         },
       })
       .then((res) => {
         if (res.status === 200) {
           //watering successfull
-        } else {
-          //watering unsuccessfull
-          if (res.errorList) {
-            console.log(res.errorList);
-          }
-        }
+        } 
         setWateringText(res.data.message);
       })
-      .catch(function (error) {});
+      .catch(function (error) {
+          if (error.response.data.errorList) {
+            setWateringText("Node: " +  error.response.data.errorList + " had an error when trying to start watering!" );
+          } else {
+            setWateringText(error.response.data.message);
+          }
+         
+      });
   }
 
   return (

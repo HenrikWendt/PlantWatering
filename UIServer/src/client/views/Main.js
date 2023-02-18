@@ -64,7 +64,6 @@ export default function Main() {
             }
         })
         .catch(function(error) {
-
             setLoggedIn({status: false, username: "" });     
         });
       

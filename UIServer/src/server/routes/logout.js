@@ -25,8 +25,8 @@ router.delete('/', async (req, res) => {
 
             console.log("null");
 
-            res.status(400).json({
-                status: 400,
+            res.status(500).json({
+                status: 500,
                 message: "Something went wrong!",
             });
         }

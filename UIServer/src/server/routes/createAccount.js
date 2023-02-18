@@ -32,8 +32,8 @@ router.post('/', async (req, res) => {
         });
 
       } else {
-        res.status(400).json({
-          status: 400,
+        res.status(401).json({
+          status: 401,
           message: "Not authorized!",
         });
       }
@@ -45,8 +45,8 @@ router.post('/', async (req, res) => {
           message: "Username already exists!",
         });
       } else {
-        res.status(400).json({
-          status: 400,
+        res.status(500).json({
+          status: 500,
           message: "Someting went wrong!",
         });
 

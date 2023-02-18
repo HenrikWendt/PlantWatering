@@ -32,16 +32,16 @@ router.get('/', async (req, res) => {
                 });
 
             } else {
-                res.status(400).json({
-                    status: 400,
+                res.status(401).json({
+                    status: 401,
                     message: "Wrong username or password!",
                 });
             } 
         }
     }catch(err) {
 
-        res.status(400).json({
-            status: 400,
+        res.status(500).json({
+            status: 500,
             message: "Something went wrong!",
         });
     }
