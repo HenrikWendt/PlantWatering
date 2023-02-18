@@ -9,6 +9,7 @@ router.get("/", async (req, res) => {
     var parameters = req.query;
 
     const nodes = ["1", "2", "3", "4", "5"];
+    const listOfErrors = [];
     const user = await User.findOne({ username: parameters.username }).exec();
     if (
       user !== null &&
@@ -18,30 +19,33 @@ router.get("/", async (req, res) => {
       console.log("Preparing watering!");
 
       if (parameters.node === "All") {
-        let error = false;
-        for (let i = 0; i < nodes.length; i++) {
-          if (!error) {
-            request(
-              await wateringRequest(nodes[i]),
+        let wateringError = false;
+
+        await Promise.all(
+          nodes.map(async (node) => {
+            await request(
+              await wateringRequest(node),
               function (error, response) {
+                console.log("B4!");
                 if (response.statusCode !== 200) {
-                  error = true;
+                  console.log("ERROR!");
+                  listOfErrors.push(node);
+                  wateringError = true;
                 }
               }
             );
-          } else {
-            break;
-          }
-        }
-        if (error) {
-          res.status(400).json({
-            message: "Something went wrong, no watering performed!",
+          })
+        );
+        /* for (let i = 0; i < nodes.length; i++) {
+          request(await wateringRequest(nodes[i]), function (error, response) {
+            console.log("B4!");
+            if (response.statusCode !== 200) {
+              console.log("ERROR!");
+              listOfErrors.push(nodes[i]);
+              wateringError = true;
+            }
           });
-        } else {
-          res.status(200).json({
-            message: "Watering started on all nodes!",
-          });
-        }
+        }*/
       } else {
         request(
           await wateringRequest(parameters.node),

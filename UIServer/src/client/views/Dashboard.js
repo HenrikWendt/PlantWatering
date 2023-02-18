@@ -50,6 +50,9 @@ export default function Dashboard() {
           //watering successfull
         } else {
           //watering unsuccessfull
+          if (res.errorList) {
+            console.log(res.errorList);
+          }
         }
         setWateringText(res.data.message);
       })
